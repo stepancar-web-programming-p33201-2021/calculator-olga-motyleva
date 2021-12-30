@@ -36,20 +36,10 @@ class App extends React.Component {
   }
 
   onButtonClick(item) {
-    const output = this.refOutput.current;
+    let output = this.refOutput.current;
     this.state.tapeEngine.setProps(item, output.value, output.className);
     this.state.tapeEngine.tape();
-    output.value = this.state.tapeEngine.output.value;
-    const classList = this.state.tapeEngine.output.classList;
-    output.classList = [];
-
-    for (let i = 0; i < classList.length; i++) {
-      output.classList.add(classList[i]);
-    }
-
-    if (output.focus) {
-      output.blur();
-    }
+    output = this.state.tapeEngine.handleOutput(output);
   }
 
   render() {

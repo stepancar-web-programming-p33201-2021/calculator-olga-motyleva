@@ -9,7 +9,23 @@ class TapeEngine {
             focus: true
         }
     }
-    
+
+    handleOutput(output) {
+        output.value = this.output.value;
+        const classList = this.output.classList;
+        output.classList = [];
+
+        for (let i = 0; i < classList.length; i++) {
+            output.classList.add(classList[i]);
+        }
+
+        if (output.focus) {
+            output.blur();
+        }
+
+        return output;
+    }
+
     remove(array, item) {
         const index = array.indexOf(item);
 
